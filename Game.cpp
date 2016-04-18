@@ -956,41 +956,66 @@ namespace Gaming
 		{
 			if (__grid[i] != nullptr)
 			{
-				ActionType ac = STAY;
-				Position p0(i / __width, i % __width);
-				Surroundings surr = getSurroundings(p0);
-				ac = __grid[i]->takeTurn(surr);
-				// Position p1 = Game::move(p0, ac);
-				// if(p1.x != p0.x && p1.y != p0.y)
-				// {		
-				// 	Piece *q;
-				// 	q = __grid[i];
-				// 	__grid[(p1.x * __width) + p1.y] = q;
-				// 	__grid[i] = nullptr;
-				// }
-				Position p1 = __grid[i]->getPosition();
-				p1.x += 1;
-				p1.y += 1; 
-				__grid[i]->setPosition(p1);
+				if (__grid[i]->getTurned() == false)
+				{
+					// __grid[i]->setTurned(true);
+					// ActionType ac = STAY;
+					// Position p0(i / __width, i % __width);
+					// Surroundings surr = getSurroundings(p0);
+					// // ac = __grid[i]->takeTurn(surr);
+					// // Position p1 = Game::move(p0, ac);
+					// // if(p1.x != p0.x && p1.y != p0.y)
+					// // {		
+					// // 	Piece *q;
+					// // 	q = __grid[i];
+					// // 	__grid[(p1.x * __width) + p1.y] = q;
+					// // 	__grid[i] = nullptr;
+					// // }
+					Position p1 = __grid[i]->getPosition();
+					p1.x += 1;
+					p1.y += 1; 
+					__grid[i]->setPosition(p1);
+				}
 			}
 		}
 		for (int i = 0; i < __grid.size(); ++i)
 		{
 			if(__grid[i] != nullptr)
 			{
+				__grid[i]->setTurned(false);
 				__grid[i]->age();
+				if (__grid[i]->isViable() == false)
+				{
+					__grid[i] = nullptr;
+				}
+
+				// if (__grid[i]->getType() == SIMPLE || __grid[i]->getType() == STRATEGIC)
+				// {
+				// 	if (__grid[i]->getEnergy() == 0)
+				// 	{
+				// 		delete __grid[i];
+				// 	}
+				// }
+				// else if (__grid[i]->getType() == FOOD || __grid[i]->getType() == ADVANTAGE)
+				// {
+				// 	if (__grid[i]->getCapacity < 1)
+				// 	{
+				// 		delete __grid[i];
+				// 	}
+				// }
 			}
 		}
 	}
 
 	void Game::play(bool verbose)
 	{
-		// unsigned resource = __numInitResources;
-		// while (resource > 0)
-		// {
-		// 	round();
-		// 	resource - NUM_INIT_RESOURCE_FACTOR;
-		// }
+		while (getNumResources() > 0)
+		{
+			round();
+			std::cout << *this << std::endl;
+		}
+		__status = OVER;
+		std::cout << *this << std::endl;
 	}
 
 	std::ostream& operator<<(std::ostream &os, const Game &game)

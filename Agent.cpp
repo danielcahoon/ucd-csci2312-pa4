@@ -54,16 +54,7 @@ namespace Gaming
 
 	Piece& Agent::interact(Resource *resource)
 	{
-		if (resource->getType() == FOOD)
-		{
-			__energy += resource->getCapacity();
-			resource->consume();
-		}
-		else
-		{
-			__energy += (resource->getCapacity() * Advantage::ADVANTAGE_MULT_FACTOR);
-			resource->consume();
-		}
+		__energy += resource->consume();
 		return *this;
 	}
 

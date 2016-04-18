@@ -1470,9 +1470,11 @@ void test_game_play(ErrorContext &ec, unsigned int numRuns) {
             Game g; // manual = true, by default
             g.addSimple(1, 1);
             g.addFood(2, 2);
-
+            
+            std::cout << g << std::endl;
+                        
             g.play(false); // verbose = false, by default
-
+            std::cout << g << std::endl;
             pass = (g.getNumResources() == 0) &&
                    (g.getNumAgents() == 1);
 

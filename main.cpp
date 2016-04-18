@@ -64,8 +64,10 @@ int main() {
 
     //     g.addSimple(1,1);
     //     g.addFood(0,1);
+    //     // unsigned resources = g.getNumResources();
+    //     // cout << "resources = " << resources << endl;
     //     cout << g << endl;
-    //     g.round();
+    //     g.play();
         
     //     cout << g << endl;
 
