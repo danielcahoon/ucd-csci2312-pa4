@@ -6,6 +6,14 @@
 #include "ErrorContext.h"
 #include "GamingTests.h"
 
+#include "Game.h"
+#include "Exceptions.h"
+#include "Simple.h"
+#include "Strategic.h"
+#include "Food.h"
+#include "Advantage.h"
+#include "AggressiveAgentStrategy.h"
+
 using std::cout;
 using std::endl;
 
@@ -29,26 +37,39 @@ int main() {
     ErrorContext ec(cout);
 
     // piece tests
-    // test_piece_smoketest(ec);
-    // test_piece_print(ec, NumIters);
-    // test_piece_aging(ec, NumIters);
-    // test_piece_energy(ec, NumIters);
-    // test_piece_turntaking(ec, NumIters);
-    // test_piece_interaction(ec, NumIters);
+    test_piece_smoketest(ec);
+    test_piece_print(ec, NumIters);
+    test_piece_aging(ec, NumIters);
+    test_piece_energy(ec, NumIters);
+    test_piece_turntaking(ec, NumIters);
+    test_piece_interaction(ec, NumIters);
 
     // surroundings tests
-    // test_surroundings_smoketest(ec);
+    test_surroundings_smoketest(ec);
 
     // action tests
-    // test_action_smoketest(ec);
+    test_action_smoketest(ec);
 
     // game tests
     test_game_smoketest(ec);
-    // test_game_populate(ec, NumIters);
-    // test_game_getpiece(ec, NumIters);
-    // test_game_print(ec, NumIters);
-    // test_game_randomization(ec, NumIters);
-    // test_game_play(ec, NumIters);
+    test_game_populate(ec, NumIters);
+    test_game_getpiece(ec, NumIters);
+    test_game_print(ec, NumIters);
+    test_game_randomization(ec, NumIters);
+    test_game_play(ec, NumIters);
+
+    // using namespace Gaming;
+    // {
+    //     Game g(3, 3);
+
+    //     g.addSimple(1,1);
+    //     g.addFood(0,1);
+    //     cout << g << endl;
+    //     g.round();
+        
+    //     cout << g << endl;
+
+    // }
 
     return 0;
 }
